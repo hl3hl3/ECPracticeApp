@@ -33,7 +33,7 @@
             android:textColor="@color/black"
             tools:text="message" />
 
-        <androidx.viewpager.widget.ViewPager
+        <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginHorizontal="16dp"
