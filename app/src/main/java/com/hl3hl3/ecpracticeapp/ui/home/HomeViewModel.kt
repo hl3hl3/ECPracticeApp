@@ -10,6 +10,7 @@ import com.hl3hl3.ecpracticeapp.Logger
 import com.hl3hl3.ecpracticeapp.api.Api
 import com.hl3hl3.ecpracticeapp.api.ApiResponse
 import com.hl3hl3.ecpracticeapp.ui.message.MessageActivity
+import com.hl3hl3.ecpracticeapp.ui.qrcodeinfo.QRCodeInfoActivity
 import com.hl3hl3.ecpracticeapp.vo.Banner
 import com.hl3hl3.ecpracticeapp.vo.BannerResponse
 import kotlinx.coroutines.launch
@@ -37,7 +38,9 @@ class HomeViewModel(): ViewModel() {
     }
 
     fun onClickPay(view: View) {
-        // TODO
+        view.context.let {
+            it.startActivity(Intent(it, QRCodeInfoActivity::class.java))
+        }
     }
 
     fun onClickMessage(view: View) {
