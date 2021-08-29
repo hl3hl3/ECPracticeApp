@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{data.title}"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="16dp"
+            android:textColor="@color/black"
+            tools:text="title" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{data.ts}"
+            android:paddingHorizontal="24dp"
+            android:textColor="@color/black"
+            tools:text="timestamp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{data.msg}"
+            android:paddingHorizontal="24dp"
+            android:paddingBottom="16dp"
+            android:textColor="@color/black"
+            tools:text="message" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="#dddddd"/>
+    </LinearLayout>
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.hl3hl3.ecpracticeapp.vo.Message" />
+    </data>
+</layout>

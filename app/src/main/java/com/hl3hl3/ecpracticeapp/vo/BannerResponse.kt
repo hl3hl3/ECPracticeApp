@@ -1,7 +1,5 @@
 package com.hl3hl3.ecpracticeapp.vo
 
-import com.squareup.moshi.JsonClass
-
 /**
  *
  * {

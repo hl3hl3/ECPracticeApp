@@ -15,12 +15,11 @@ class HomeActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.home_activity)
 
         val binding: HomeActivityBinding = DataBindingUtil.setContentView(this,
             R.layout.home_activity
         )
-        val viewModel = HomeViewModel(this)
+        val viewModel = HomeViewModel()
 
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
@@ -33,7 +32,7 @@ class HomeActivity : BaseActivity() {
             PagerSnapHelper().attachToRecyclerView(it)
         }
 
-        viewModel.onStart()
+        viewModel.onStart(this)
 
     }
 
