@@ -1,4 +1,4 @@
-package com.hl3hl3.ecpracticeapp
+package com.hl3hl3.ecpracticeapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 

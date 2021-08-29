@@ -1,39 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout>
 
-    <TextView
-        android:id="@+id/tvHomeMessages"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableTop="@mipmap/ic_launcher"
-        android:gravity="center"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="12dp"
-        android:text="Messages"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvHomeBanner"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/teal_200"
-        app:layout_constraintTop_toBottomOf="@id/tvHomeMessages" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvHomePay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableTop="@mipmap/ic_launcher"
-        android:gravity="center"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="12dp"
-        android:text="Pay"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rvHomeBanner" />
+        <TextView
+            android:id="@+id/tvHomeMessages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/ic_launcher"
+            android:gravity="center"
+            android:onClick="@{viewmodel::onClickMessage}"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:text="Messages"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvHomePay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/ic_launcher"
+            android:gravity="center"
+            android:onClick="@{viewmodel::onClickPay}"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:text="Pay"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvHomeBanner" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHomeBanner"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/teal_200"
+            app:homeBannerList="@{viewmodel.bannerData}"
+            app:layout_constraintTop_toBottomOf="@id/tvHomeMessages" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.hl3hl3.ecpracticeapp.ui.home.HomeViewModel" />
+    </data>
+</layout>
