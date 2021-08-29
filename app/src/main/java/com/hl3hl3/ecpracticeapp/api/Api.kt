@@ -1,7 +1,9 @@
 package com.hl3hl3.ecpracticeapp.api
 
 import android.content.Context
+import android.os.Build
 import com.google.gson.Gson
+import com.hl3hl3.ecpracticeapp.BuildConfig
 import com.hl3hl3.ecpracticeapp.vo.BannerResponse
 import com.hl3hl3.ecpracticeapp.vo.MessageResponse
 import com.hl3hl3.ecpracticeapp.vo.QRCodeInfoResponse
@@ -18,9 +20,7 @@ object Api {
             doGet(
                 context,
                 "/v3/f6733f2d-82fc-43e7-b19d-d8381f0ab91e",
-                mapOf(
-                    Pair("app_version", "Android11_v1.0")
-                ),
+                mapOf(headerAppVersion()),
                 object : UrlRequestCallback<BannerResponse>() {
                     override fun onResponseSucceeded(apiResponse: ApiResponse<BannerResponse>) {
                         apiResponse.responseBodyString?.let {
@@ -43,9 +43,7 @@ object Api {
             doGet(
                 context,
                 "/v3/0f0488e1-e532-45e5-8033-bef5904359fe",
-                mapOf(
-                    Pair("app_version", "Android11_v1.0")
-                ),
+                mapOf(headerAppVersion()),
                 object : UrlRequestCallback<MessageResponse>() {
                     override fun onResponseSucceeded(apiResponse: ApiResponse<MessageResponse>) {
                         apiResponse.responseBodyString?.let {
@@ -68,9 +66,7 @@ object Api {
             doGet(
                 context,
                 "/v3/8c29aeec-3ab4-4ac1-9b2e-e99652dbd155",
-                mapOf(
-                    Pair("app_version", "Android11_v1.0")
-                ),
+                mapOf(headerAppVersion()),
                 object : UrlRequestCallback<QRCodeInfoResponse>() {
                     override fun onResponseSucceeded(apiResponse: ApiResponse<QRCodeInfoResponse>) {
                         apiResponse.responseBodyString?.let {
@@ -86,6 +82,10 @@ object Api {
                 }
             )
         }
+    }
+
+    private fun headerAppVersion(): Pair<String, String> {
+        return Pair("app_version", "Android${Build.VERSION.RELEASE}_v${BuildConfig.VERSION_NAME}")
     }
 
     const val baseUrl: String = "https://run.mocky.io"
