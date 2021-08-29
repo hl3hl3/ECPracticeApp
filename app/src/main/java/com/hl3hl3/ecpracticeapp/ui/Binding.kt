@@ -1,10 +1,12 @@
 package com.hl3hl3.ecpracticeapp
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.hl3hl3.ecpracticeapp.ui.qrcodeinfo.GZxingEncoder
 import com.hl3hl3.ecpracticeapp.vo.Banner
 import com.hl3hl3.ecpracticeapp.vo.Message
 
@@ -39,4 +41,13 @@ fun bindImage(imageView: ImageView, url: String?) {
     Glide.with(context)
         .load(url)
         .into(imageView)
+}
+
+@BindingAdapter("qrcodeContent")
+fun bindQrcode(imageView: ImageView, content: String?) {
+    if (content.isNullOrBlank()) {
+        imageView.setImageResource(R.mipmap.ic_launcher)
+    } else {
+        imageView.setImageBitmap(GZxingEncoder.generateQRCode_general(content))
+    }
 }
