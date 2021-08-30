@@ -4,12 +4,9 @@ import android.content.Context
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hl3hl3.ecpracticeapp.Logger
 import com.hl3hl3.ecpracticeapp.api.Api
 import com.hl3hl3.ecpracticeapp.api.ApiResponse
 import com.hl3hl3.ecpracticeapp.ui.LoadingView
-import com.hl3hl3.ecpracticeapp.vo.Message
-import com.hl3hl3.ecpracticeapp.vo.MessageResponse
 import com.hl3hl3.ecpracticeapp.vo.QRCodeInfo
 import com.hl3hl3.ecpracticeapp.vo.QRCodeInfoResponse
 import kotlinx.coroutines.launch

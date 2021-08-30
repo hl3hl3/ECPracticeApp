@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hl3hl3.ecpracticeapp.databinding.MessageListItemBinding
 import com.hl3hl3.ecpracticeapp.ui.message.MessageViewModel
 import com.hl3hl3.ecpracticeapp.vo.Message
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
 
 class MessageAdapter(val viewModel: MessageViewModel) : ListAdapter<Message, RecyclerView.ViewHolder>(DiffCallback), Listener{
 
