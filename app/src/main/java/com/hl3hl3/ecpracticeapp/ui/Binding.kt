@@ -56,7 +56,7 @@ fun bindQrcode(imageView: ImageView, content: String?) {
     if (content.isNullOrBlank()) {
         // TODO 可顯示預設圖
     } else {
-        imageView.setImageBitmap(GZxingEncoder.generateQRCode_general(content))
+        imageView.setImageBitmap(GZxingEncoder.generateQRCode(content))
     }
 }
 
