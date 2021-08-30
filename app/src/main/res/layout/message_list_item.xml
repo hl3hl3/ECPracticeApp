@@ -1,49 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/tvMessageTitle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{data.title}"
             android:paddingHorizontal="24dp"
             android:paddingTop="16dp"
+            android:text="@{data.title}"
             android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/tvMessageTime"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tvMessageRemove"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="title" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/tvMessageTime"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{data.ts}"
             android:paddingHorizontal="24dp"
+            android:text="@{data.ts}"
             android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/tvMessageContent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tvMessageRemove"
+            app:layout_constraintTop_toBottomOf="@id/tvMessageTitle"
             tools:text="timestamp" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/tvMessageContent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{data.msg}"
             android:paddingHorizontal="24dp"
             android:paddingBottom="16dp"
+            android:text="@{data.msg}"
             android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/tvMessageDivider"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tvMessageRemove"
+            app:layout_constraintTop_toBottomOf="@id/tvMessageTime"
             tools:text="message" />
 
+        <TextView
+            android:id="@+id/tvMessageRemove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="刪除"
+            android:textColor="@color/black"
+            app:isShow="@{isEditMode}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <View
+            android:id="@+id/tvMessageDivider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginHorizontal="16dp"
-            android:background="#dddddd"/>
-    </LinearLayout>
+            android:background="#dddddd"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMessageContent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <data>
 
         <variable
             name="data"
             type="com.hl3hl3.ecpracticeapp.vo.Message" />
+
+        <variable
+            name="isEditMode"
+            type="boolean" />
+
+        <variable
+            name="viewModel"
+            type="com.hl3hl3.ecpracticeapp.ui.message.MessageViewModel" />
     </data>
 </layout>

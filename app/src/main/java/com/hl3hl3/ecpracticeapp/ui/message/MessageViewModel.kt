@@ -1,6 +1,7 @@
 package com.hl3hl3.ecpracticeapp.ui.message
 
 import android.content.Context
+import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,6 +15,7 @@ import kotlinx.coroutines.launch
 class MessageViewModel : ViewModel() {
 
     var data: ObservableField<List<Message>> = ObservableField()
+    var isEditMode: ObservableField<Boolean> = ObservableField(false)
 
     fun onStart(context: Context) {
         viewModelScope.launch {
@@ -30,6 +32,35 @@ class MessageViewModel : ViewModel() {
                 // fail
                 data.set(null)
                 Logger.logD(this.javaClass.name, "fail")
+            }
+        }
+    }
+
+    fun onClickEdit(view: View) {
+        isEditMode.set(isEditMode.get()?.not() ?: true)
+    }
+
+    fun onClickRemoveMessage(position: Int) {
+
+        data.get()?.let {
+            Logger.logD("test", "datalist size=${it.size}")
+        }
+
+        val currentList = data.get()
+        currentList?.let {
+            if (it.size < position) {
+                Logger.logD(this.javaClass.name, "index wrong, list size=${it.size}, remove position=$position")
+            } else {
+                it.toMutableList().removeAt(position)
+            }
+        }
+
+        currentList?.toMutableList()?.let{
+            if (it.size < position) {
+                Logger.logD(this.javaClass.name, "index wrong, list size=${it.size}, remove position=$position")
+            } else {
+                it.removeAt(position)
+                data.set(it)
             }
         }
     }

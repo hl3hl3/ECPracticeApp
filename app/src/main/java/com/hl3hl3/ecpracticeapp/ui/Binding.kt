@@ -1,8 +1,9 @@
 package com.hl3hl3.ecpracticeapp
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -35,6 +36,15 @@ fun bindMessageRecyclerViewWithItemList(recyclerView: RecyclerView, list: List<M
     }
 }
 
+@BindingAdapter("isEditMode")
+fun bindMessageListEditMode(recyclerView: RecyclerView, isEditMode: Boolean?) {
+    recyclerView.adapter?.apply {
+        if (this is MessageAdapter) {
+            setEditMode(isEditMode ?: false)
+        }
+    }
+}
+
 @BindingAdapter("imageUrl")
 fun bindImage(imageView: ImageView, url: String?) {
     val context: Context = imageView.getContext()
@@ -50,4 +60,9 @@ fun bindQrcode(imageView: ImageView, content: String?) {
     } else {
         imageView.setImageBitmap(GZxingEncoder.generateQRCode_general(content))
     }
+}
+
+@BindingAdapter("isShow")
+fun bindIsShow(textView: TextView, isShow: Boolean?) {
+    textView.isVisible = isShow == true
 }

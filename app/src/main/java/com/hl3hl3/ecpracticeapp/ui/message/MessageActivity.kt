@@ -24,7 +24,20 @@ class MessageActivity  : BaseActivity() {
 
         binding.rvMessages.let {
             it.layoutManager = LinearLayoutManager(this)
-            it.adapter = MessageAdapter()
+            it.adapter = MessageAdapter(viewModel)
+        }
+        binding.tvMessagesEdit.setOnClickListener {
+            viewModel.onClickEdit(it)
+        }
+        binding.toolbar.let {
+            setSupportActionBar(it)
+            supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(true)
+                setDisplayShowHomeEnabled(true)
+            }
+            it.setNavigationOnClickListener {
+                onBackPressed()
+            }
         }
 
         viewModel.onStart(this)
