@@ -67,7 +67,6 @@ class MessageViewHolder(
             listener.onClickRemove(it.tag as Message)
         }
         binding.executePendingBindings()
-        Logger.logD("MessageViewHolder", "setView, title=${binding.data?.title}")
     }
 }
 

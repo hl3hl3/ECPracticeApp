@@ -15,7 +15,6 @@ import com.hl3hl3.ecpracticeapp.vo.Message
 @BindingAdapter("homeBannerList")
 fun bindRecyclerViewWithDataItemList(recyclerView: RecyclerView, bannerList: List<Banner>?) {
     bannerList?.let {
-        Logger.logD("Binding", "bindRecyclerViewWithDataItemList()")
         recyclerView.adapter?.apply {
             when (this) {
                 is BannerAdapter -> submitList(it)
@@ -27,7 +26,6 @@ fun bindRecyclerViewWithDataItemList(recyclerView: RecyclerView, bannerList: Lis
 @BindingAdapter("messageList")
 fun bindMessageRecyclerViewWithItemList(recyclerView: RecyclerView, list: List<Message>?) {
     list?.let {
-        Logger.logD("Binding", "bindMessageList()")
         recyclerView.adapter?.apply {
             when (this) {
                 is MessageAdapter -> submitList(it)

@@ -21,19 +21,13 @@ class QRCodeInfoViewModel(val loadingView: LoadingView) : ViewModel() {
     fun onStart(context: Context) {
         loadingView.showLoading()
         viewModelScope.launch {
-            Logger.logD(this.javaClass.name, "viewModelScope.launch")
             val apiResponse: ApiResponse<QRCodeInfoResponse> = Api.getQrcodeInfo(context)
             if (apiResponse.response?.status_code == 0) {
                 // success
-                Logger.logD(this.javaClass.name, "response, ${apiResponse.response}")
-                Logger.logD(this.javaClass.name, "result, ${apiResponse.response?.result}")
-
                 data.set(apiResponse.response?.result)
-                Logger.logD(this.javaClass.name, "success")
             } else {
                 // fail
                 data.set(null)
-                Logger.logD(this.javaClass.name, "fail")
             }
             loadingView.hideLoading()
         }

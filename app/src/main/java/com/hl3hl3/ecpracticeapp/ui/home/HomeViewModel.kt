@@ -26,15 +26,10 @@ class HomeViewModel(val loadingView: LoadingView): ViewModel() {
             val apiResponse: ApiResponse<BannerResponse> = Api.getBanners(context)
             if (apiResponse.response?.status_code == 0) {
                 // success
-                Logger.logD("HomeViewModel", "response, ${apiResponse.response}")
-                Logger.logD("HomeViewModel", "result, ${apiResponse.response?.result}")
-
                 bannerData.set(apiResponse.response?.result?.banners)
-                Logger.logD("HomeViewModel", "success")
             } else {
                 // fail
                 bannerData.set(null)
-                Logger.logD("HomeViewModel", "fail")
             }
             loadingView.hideLoading()
         }

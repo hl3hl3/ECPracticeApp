@@ -45,8 +45,6 @@ class BannerViewHolder(val binding: HomeBannerItemBinding) : RecyclerView.ViewHo
         binding.bannerData = data
         binding.handlers = this
         binding.executePendingBindings()
-
-        Logger.logD("BannerViewHolder", "setView, title=${binding.bannerData?.title}")
     }
 
     fun onClickBanner(view: View) {
@@ -54,7 +52,7 @@ class BannerViewHolder(val binding: HomeBannerItemBinding) : RecyclerView.ViewHo
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(binding.bannerData?.target_url))
             view.context.startActivity(intent)
         } catch (e: Exception) {
-            Logger.logD("BannerViewHolder", "ACTION_VIEW intent error")
+            Logger.logE(e)
         }
     }
 }
