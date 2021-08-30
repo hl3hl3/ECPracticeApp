@@ -56,7 +56,7 @@ fun bindImage(imageView: ImageView, url: String?) {
 @BindingAdapter("qrcodeContent")
 fun bindQrcode(imageView: ImageView, content: String?) {
     if (content.isNullOrBlank()) {
-        imageView.setImageResource(R.mipmap.ic_launcher)
+        // TODO 可顯示預設圖
     } else {
         imageView.setImageBitmap(GZxingEncoder.generateQRCode_general(content))
     }
