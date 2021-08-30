@@ -20,6 +20,17 @@ class QRCodeInfoActivity : BaseActivity() {
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
+        binding.toolbar.let {
+            setSupportActionBar(it)
+            supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(true)
+                setDisplayShowHomeEnabled(true)
+            }
+            it.setNavigationOnClickListener {
+                onBackPressed()
+            }
+        }
+
         viewModel.onStart(this)
 
     }

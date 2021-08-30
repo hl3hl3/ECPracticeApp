@@ -32,6 +32,14 @@ class HomeActivity : BaseActivity() {
             PagerSnapHelper().attachToRecyclerView(it)
         }
 
+        binding.toolbar.let {
+            setSupportActionBar(it)
+            supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(false)
+                setDisplayShowHomeEnabled(false)
+            }
+        }
+
         viewModel.onStart(this)
 
     }

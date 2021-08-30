@@ -6,15 +6,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvHomeMessages"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:background="@mipmap/ic_msg"
-            android:gravity="center"
-            android:onClick="@{viewmodel::onClickMessage}"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvHomeMessages"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="right"
+                android:background="@mipmap/ic_msg"
+                android:gravity="center"
+                android:onClick="@{viewmodel::onClickMessage}"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHomeBanner"
@@ -22,7 +33,7 @@
             android:layout_height="200dp"
             android:background="#AAAAAA"
             app:homeBannerList="@{viewmodel.bannerData}"
-            app:layout_constraintTop_toBottomOf="@id/tvHomeMessages" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
         <TextView
             android:id="@+id/tvHomePay"
