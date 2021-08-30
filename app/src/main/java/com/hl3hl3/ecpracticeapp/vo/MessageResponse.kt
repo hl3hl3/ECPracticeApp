@@ -39,4 +39,8 @@ data class Message(
     val title: String,
     val msg: String,
     val ts: String,
-)
+) {
+    fun isSame(data: Message) : Boolean {
+        return title == data.title && msg == data.msg && ts == data.ts
+    }
+}

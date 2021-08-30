@@ -43,26 +43,23 @@ class MessageViewModel(val loadingView: LoadingView) : ViewModel() {
         isEditMode.set(isEditMode.get()?.not() ?: true)
     }
 
-    fun onClickRemoveMessage(position: Int) {
+    fun onClickRemoveMessage(messageToRemove: Message) {
+        data.get()?.toMutableList()?.let {
 
-        data.get()?.let {
-            Logger.logD("test", "datalist size=${it.size}")
-        }
-
-        val currentList = data.get()
-        currentList?.let {
-            if (it.size < position) {
-                Logger.logD(this.javaClass.name, "index wrong, list size=${it.size}, remove position=$position")
-            } else {
-                it.toMutableList().removeAt(position)
+            var indexToRemove: Int = -1
+            it.forEachIndexed { index, message ->
+                if (message.isSame(messageToRemove)) {
+                    indexToRemove = index
+                }
             }
-        }
 
-        currentList?.toMutableList()?.let{
-            if (it.size < position) {
-                Logger.logD(this.javaClass.name, "index wrong, list size=${it.size}, remove position=$position")
+            if (it.size <= indexToRemove) {
+                Logger.logD(
+                    this.javaClass.name,
+                    "index wrong, list size=${it.size}, remove position=$indexToRemove"
+                )
             } else {
-                it.removeAt(position)
+                it.removeAt(indexToRemove)
                 data.set(it)
             }
         }

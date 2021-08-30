@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hl3hl3.ecpracticeapp.databinding.MessageListItemBinding
 import com.hl3hl3.ecpracticeapp.ui.message.MessageViewModel
 import com.hl3hl3.ecpracticeapp.vo.Message
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 
 class MessageAdapter(val viewModel: MessageViewModel) : ListAdapter<Message, RecyclerView.ViewHolder>(DiffCallback), Listener{
 
@@ -22,7 +24,7 @@ class MessageAdapter(val viewModel: MessageViewModel) : ListAdapter<Message, Rec
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is MessageViewHolder -> {
-                holder.setView(getItem(position), isEditMode, position)
+                holder.setView(getItem(position), isEditMode)
             }
         }
     }
@@ -34,8 +36,8 @@ class MessageAdapter(val viewModel: MessageViewModel) : ListAdapter<Message, Rec
         notifyDataSetChanged()
     }
 
-    override fun onClickRemove(position: Int) {
-        viewModel.onClickRemoveMessage(position)
+    override fun onClickRemove(data: Message) {
+        viewModel.onClickRemoveMessage(data)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<Message>() {
@@ -50,19 +52,19 @@ class MessageAdapter(val viewModel: MessageViewModel) : ListAdapter<Message, Rec
 }
 
 interface Listener {
-    fun onClickRemove(position: Int)
+    fun onClickRemove(data: Message)
 }
 
 class MessageViewHolder(
     val binding: MessageListItemBinding,
     private val listener: Listener,
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun setView(data: Message, isEditMode: Boolean, position: Int) {
+    fun setView(data: Message, isEditMode: Boolean) {
         binding.data = data
         binding.isEditMode = isEditMode
-        binding.tvMessageRemove.tag = position
+        binding.tvMessageRemove.tag = data
         binding.tvMessageRemove.setOnClickListener {
-            listener.onClickRemove(it.tag as Int)
+            listener.onClickRemove(it.tag as Message)
         }
         binding.executePendingBindings()
         Logger.logD("MessageViewHolder", "setView, title=${binding.data?.title}")
