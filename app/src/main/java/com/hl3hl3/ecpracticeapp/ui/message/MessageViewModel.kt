@@ -8,16 +8,18 @@ import androidx.lifecycle.viewModelScope
 import com.hl3hl3.ecpracticeapp.Logger
 import com.hl3hl3.ecpracticeapp.api.Api
 import com.hl3hl3.ecpracticeapp.api.ApiResponse
+import com.hl3hl3.ecpracticeapp.ui.LoadingView
 import com.hl3hl3.ecpracticeapp.vo.Message
 import com.hl3hl3.ecpracticeapp.vo.MessageResponse
 import kotlinx.coroutines.launch
 
-class MessageViewModel : ViewModel() {
+class MessageViewModel(val loadingView: LoadingView) : ViewModel() {
 
     var data: ObservableField<List<Message>> = ObservableField()
     var isEditMode: ObservableField<Boolean> = ObservableField(false)
 
     fun onStart(context: Context) {
+        loadingView.showLoading()
         viewModelScope.launch {
             Logger.logD(this.javaClass.name, "viewModelScope.launch")
             val apiResponse: ApiResponse<MessageResponse> = Api.getMessages(context)
@@ -33,6 +35,7 @@ class MessageViewModel : ViewModel() {
                 data.set(null)
                 Logger.logD(this.javaClass.name, "fail")
             }
+            loadingView.hideLoading()
         }
     }
 

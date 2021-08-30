@@ -6,7 +6,7 @@ import com.hl3hl3.ecpracticeapp.R
 import com.hl3hl3.ecpracticeapp.databinding.QrcodeInfoActivityBinding
 import com.hl3hl3.ecpracticeapp.ui.BaseActivity
 
-class QRCodeInfoActivity  : BaseActivity() {
+class QRCodeInfoActivity : BaseActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +15,7 @@ class QRCodeInfoActivity  : BaseActivity() {
         val binding: QrcodeInfoActivityBinding = DataBindingUtil.setContentView(this,
             R.layout.qrcode_info_activity
         )
-        val viewModel = QRCodeInfoViewModel()
+        val viewModel = QRCodeInfoViewModel(this)
 
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this

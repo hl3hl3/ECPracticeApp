@@ -19,7 +19,7 @@ class HomeActivity : BaseActivity() {
         val binding: HomeActivityBinding = DataBindingUtil.setContentView(this,
             R.layout.home_activity
         )
-        val viewModel = HomeViewModel()
+        val viewModel = HomeViewModel(this)
 
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this

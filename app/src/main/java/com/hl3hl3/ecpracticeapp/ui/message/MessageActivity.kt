@@ -17,7 +17,7 @@ class MessageActivity  : BaseActivity() {
         val binding: MessageActivityBinding = DataBindingUtil.setContentView(this,
             R.layout.message_activity
         )
-        val viewModel = MessageViewModel()
+        val viewModel = MessageViewModel(this)
 
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this

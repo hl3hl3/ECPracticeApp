@@ -7,17 +7,19 @@ import androidx.lifecycle.viewModelScope
 import com.hl3hl3.ecpracticeapp.Logger
 import com.hl3hl3.ecpracticeapp.api.Api
 import com.hl3hl3.ecpracticeapp.api.ApiResponse
+import com.hl3hl3.ecpracticeapp.ui.LoadingView
 import com.hl3hl3.ecpracticeapp.vo.Message
 import com.hl3hl3.ecpracticeapp.vo.MessageResponse
 import com.hl3hl3.ecpracticeapp.vo.QRCodeInfo
 import com.hl3hl3.ecpracticeapp.vo.QRCodeInfoResponse
 import kotlinx.coroutines.launch
 
-class QRCodeInfoViewModel : ViewModel() {
+class QRCodeInfoViewModel(val loadingView: LoadingView) : ViewModel() {
 
     var data: ObservableField<QRCodeInfo> = ObservableField()
 
     fun onStart(context: Context) {
+        loadingView.showLoading()
         viewModelScope.launch {
             Logger.logD(this.javaClass.name, "viewModelScope.launch")
             val apiResponse: ApiResponse<QRCodeInfoResponse> = Api.getQrcodeInfo(context)
@@ -33,6 +35,7 @@ class QRCodeInfoViewModel : ViewModel() {
                 data.set(null)
                 Logger.logD(this.javaClass.name, "fail")
             }
+            loadingView.hideLoading()
         }
     }
 
